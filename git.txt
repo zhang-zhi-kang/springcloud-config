@@ -1,79 +1,80 @@
-1,��װ��Git�����ȫ������(ֻ����һ��)
+######################
+1,安装好Git后进行全局配置(只配置一次)
 	 git config --global user.name "zhang-zhi-kang"
 	 git config --global user.email "3285035310@qq.com"
-2,�����ֿ��ļ���
+2,创建仓库文件夹
 	mkdir git_pro
-3,�ֿ��ʼ��
+3,仓库初始化
 	cd git_pro
 	git init
-4,���½�,�޸ģ�ɾ���ļ����ύ��������
-	git add "�ļ���"        -------�ύһ���ļ�
-	git add "�ļ�1" "�ļ�2" "�ļ�3"		----�ύ����ļ�
-	git add .				----�ύĿ¼�µ������ļ�
-5���ӻ������ύ�����زֿ�
-	git commit -m "˵��"
-6���鿴�ֿ�״̬
+4,当新建,修改，删除文件后，提交到缓存区
+	git add "文件名"        -------提交一个文件
+	git add "文件1" "文件2" "文件3"		----提交多个文件
+	git add .				----提交目录下的所有文件
+5，从缓存区提交到本地仓库
+	git commit -m "说明"
+6，查看仓库状态
 	git status
-7���汾����
-	(1) �Ȳ鿴��ʷ�汾��
-		git reflog 	�鿴�汾��Ϣ
-		git log		�鿴�汾��ϸ��Ϣ
-	(2) ���ݰ汾�Ž��л���
+7，版本回退
+	(1) 先查看历史版本号
+		git reflog 	查看版本信息
+		git log		查看版本详细信息
+	(2) 根据版本号进行回退
 		 git reset --hard 5c41be589c6c86d9ba7e0596a03e47d69d28696c
 	
-	ע:��Ҫ�ص����°汾,��Ҫgit reflog �鿴�汾������ʷ������������µİ汾�ţ��� git reset --hard  �汾��
+	注:想要回到最新版本,需要git reflog 查看版本回退历史操作，获得最新的版本号，再 git reset --hard  版本号
 
-8����¡���ϲֿ⵽����
-	git clone ���ϲֿ��ַ(HTTPS)
+8，克隆线上仓库到本地
+	git clone 线上仓库地址(HTTPS)
 
-9�����ӣ��޸ģ�ɾ���ļ����ύ�����ϲֿ�(HTTPS)
-	git add "�ļ���"
-	git commit -m "˵��"
-	��.git/config�����ļ��м���GitHub�û���������
+9，增加，修改，删除文件后提交到线上仓库(HTTPS)
+	git add "文件名"
+	git commit -m "说明"
+	在.git/config配置文件中加入GitHub用户名和密码
 	git push
 
 
 
-8����¡���ϲֿ⵽����
-	git clone ���ϲֿ��ַ(SSH)
+8，克隆线上仓库到本地
+	git clone 线上仓库地址(SSH)
 
-9�����ӣ��޸ģ�ɾ���ļ����ύ�����ϲֿ�(SSH)
-	git add "�ļ���"
-	git commit -m "˵��"
+9，增加，修改，删除文件后提交到线上仓库(SSH)
+	git add "文件名"
+	git commit -m "说明"
 	git push
 
-11,��ȡ���ϲֿ�
+11,拉取线上仓库
 	git pull
 
-12����֧�������ָ��
+12，分支操作相关指令
 	
-	�鿴��֧��git branch -v
-	������֧��git branch ��֧��
-	�л���֧��git checkout ��֧��
-	ɾ����֧��git branch -d ��֧��          Ҫɾ��ĳ����֧ǰ�������˳��÷�֧
-	�ϲ���֧��git merge ���ϲ��ķ�֧��	��ָ���ķ�֧�ϲ�����ǰ��֧��
+	查看分支：git branch -v
+	创建分支：git branch 分支名
+	切换分支：git checkout 分支名
+	删除分支：git branch -d 分支名          要删除某个分支前必须先退出该分支
+	合并分支：git merge 被合并的分支名	把指定的分支合并到当前分支上
 
-13����ͻ�Ĳ�������
+13，冲突的产生与解决
 	
-	������ԭ���ǣ�Զ�ֿ̲����޸���ĳ���ļ���ȴû��git pull����ı��زֿ⣬�������ڱ��زֿ�Ҳ�Ը��ļ������޸ģ������ύ��Զ�ֿ̲�ʱ�������ͻ��
+	产生的原因是：远程仓库中修改了某个文件，却没有git pull到你的本地仓库，并且你在本地仓库也对该文件做了修改，进行提交到远程仓库时会产生冲突。
 	
-	����취��git pullԶ�ֿ̲⣬��Ը��ļ������޸ĵĳ���Ա��ͨ�ñ����Ĵ��룬���ύ��Զ�ֿ̲�
+	解决办法：git pull远程仓库，与对该文件做了修改的程序员沟通好保留的代码，再提交到远程仓库
 
-14�������ļ�
+14，忽略文件
 	
-	����д��
-	1)/mtk/		���������ļ���
-	2)*.zip		�������е�.zip�ļ�
-	3)/mtk/do.c	����ĳ�������ļ�
-	4)!index.php	�����˾���ĳ���ļ�
+	常见写法
+	1)/mtk/		过滤整个文件夹
+	2)*.zip		过滤所有的.zip文件
+	3)/mtk/do.c	过滤某个具体文件
+	4)!index.php	不过滤具体某个文件
 	
-	����:
-		1,����.gitignore�ļ�    touch .gitignore
-		2,��.gitignore�ļ��б�д���Թ���
+	步骤:
+		1,新增.gitignore文件    touch .gitignore
+		2,在.gitignore文件中编写忽略规则
 
-15��ΪԶ�̿ⴴ������
-	git remote add "����" git@github.com:zhang-zhi-kang/springcloud-c
-	git remote -v   �鿴����
+15，为远程库创建别名
+	git remote add "别名" git@github.com:zhang-zhi-kang/springcloud-c
+	git remote -v   查看别名
 
 
 	
