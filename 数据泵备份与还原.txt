@@ -1,0 +1,44 @@
+expdp/impdp用法
+
+ expdp system/123456@ORCL directory=dump_dir dumpfile=WMS2tablespaces.dmp logfile=WMS2tablespaces.log tablespaces=WMS2
+impdp system/123456@ORCL directory=dump_dir dumpfile=WMS2tablespaces.dmp tablespaces=WMS2 remap_tablespace=WMS2:WMS3
+
+1，导出表employees,salaries 
+
+	expdp DMS_admin/123456@ORCL directory=dump_dir dumpfile=tables.dmp logfile=tables.log tables=employees,salaries
+	
+
+2，导出用户DMS_admin
+
+	expdp system/123456@ORCL directory=dump_dir dumpfile=users.dmp 	logfile=users.log schemas=DMS_admin
+
+3，导出表空间DMS	
+	
+ expdp system/123456@ORCL directory=dump_dir dumpfile=tablespaces.dmp logfile=tablespaces.log
+tablespaces=DMS		
+
+4，导出全库
+
+ expdp system/123456@ORCL directory=dump_dir dumpfile=database.dmp logfile=database.log
+full=y	
+
+
+
+
+2,导入用户，将DMS_admin用户对象导入到EMS_hr用户
+
+	impdp system/123456@ORCL directory=dump_dir dumpfile=users.dmp schemas=DMS_admin  remap_schema=DMS_admin:EMS_hr
+
+
+3，导入表空间，将DMS表空间导入到WMS表空间中
+
+	impdp system/123456@ORCL directory=dump_dir dumpfile=tablespaces.dmp tablespaces=DMS remap_tablespace=DMS:WMS	
+
+
+4，导入全库
+	
+	impdp system/123456@ORCL directory=dump_dir dumpfile=database.dmp  full=y	
+
+
+
+
